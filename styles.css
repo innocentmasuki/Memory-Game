@@ -1,6 +1,9 @@
+*{
+    margin: 0 auto;
+}
 
-.game_container {
-    height: 300px;
-    width: 90%;
-    background-color: red;
+body {
+    background-color: #1b262c;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
 }
