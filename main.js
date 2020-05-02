@@ -9,12 +9,12 @@ function addCards(container, cards){
     });
 }
 
-function generateCards(idValue){
+function generateCards(idValue, iconClass){
     card = document.createElement('div');
     card.setAttribute('class', 'game-card');
     card.setAttribute('id', idValue);
     card.setAttribute('onmouseup', 'show(this.id)');
-
+    card.innerHTML = "<i class=\"" + iconClass + "\"></i>";
     return card;
 }
 
@@ -30,22 +30,22 @@ function generateIcon(iconClass){
 
 
 var cardsView = [
-    generateCards(1),
-    generateCards(2),
-    generateCards(3),
-    generateCards(4),
-    generateCards(5),
-    generateCards(6),
-    generateCards(7),
-    generateCards(8),
-    generateCards(9),
-    generateCards(10),
-    generateCards(11),
-    generateCards(12),
-    generateCards(13),
-    generateCards(14),
-    generateCards(15),
-    generateCards(16)
+    generateCards(1, "fa fa-instagram"),
+    generateCards(2, "fa fa-whatsapp"),
+    generateCards(3, "fa fa-snapchat-ghost"),
+    generateCards(4, "fa fa-facebook-official"),
+    generateCards(5, "fa fa-twitter"),
+    generateCards(6, "fa fa-wechat"),
+    generateCards(7, "fa fa-google-plus"),
+    generateCards(8, "fa fa-telegram"),
+    generateCards(9, "fa fa-instagram"),
+    generateCards(10, "fa fa-whatsapp"),
+    generateCards(11, "fa fa-snapchat-ghost"),
+    generateCards(12, "fa fa-facebook-official"),
+    generateCards(13, "fa fa-twitter"),
+    generateCards(14, "fa fa-wechat"),
+    generateCards(15, "fa fa-google-plus"),
+    generateCards(16, "fa fa-telegram")
 ];
 
 

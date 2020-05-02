@@ -42,7 +42,57 @@ body {
 
 
 
+
 .game-card:hover{
     box-shadow: 0 -4px 4px rgba(255, 255, 255, 0.2),
                 0 4px 4px rgba(0, 0, 0, 0.6);
 }
+
+.fa-twitter{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-instagram{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-whatsapp{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-snapchat-ghost{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-facebook-official{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-wechat{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-google-plus{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
+.fa-telegram{
+    color: #00acee;
+    text-shadow: 0px 0px 20px #00acee;
+}
+
+
