@@ -1,7 +1,8 @@
 var cardsContainer = document.getElementById("game-container");
 var newGame_btn = document.getElementById('new-game-btn');
 var icons = document.getElementsByClassName("fa");
-var selectedId, count = 0, choice1, choice2;
+var selectedId, count = 0,
+    choice1, choice2;
 
 
 
@@ -19,9 +20,6 @@ function generateCards(idValue, iconClass) {
     card.innerHTML = "<i class=\"" + iconClass + "\"></i>";
     return card;
 }
-
-
-
 
 
 var icontype = {
@@ -55,9 +53,6 @@ var cardsView = [
 ];
 
 
-
-
-
 function randomArrayShuffle(card) {
     var currentIndex = card.length,
         temporaryValue, randomIndex;
@@ -72,13 +67,6 @@ function randomArrayShuffle(card) {
 }
 
 
-
-
-
-
-
-
-
 function startGame() {
     var new_game_cards = randomArrayShuffle(cardsView);
     addCards(cardsContainer, new_game_cards);
@@ -86,17 +74,25 @@ function startGame() {
 }
 
 
+function hideIcons(){
+    for(var i = 0; i < icons.length; i++){
+        icons[i].style.display = "none";
+    }
+}
+
 
 function newGame() {
     startGame();
+    window.setTimeout(hideIcons, 3000);
+
 }
 
 
 
 
 function show(id) {
-    var selectedCard = document.getElementById(id);
-    ico = selectedCard.children[0];
+     var selectedCard = document.getElementById(id);
+    var ico = selectedCard.children[0];
     ico.classList.add("open");
     selectedId = id;
     count++;
@@ -107,17 +103,16 @@ function show(id) {
 
 
 function match() {
-    switch(count){
+    switch (count) {
         case 1:
-           choice1 = selectedId;
-        console.log(count);
+            choice1 = selectedId;
+            console.log(count);
             console.log(choice1);
             break;
         case 2:
             choice2 = selectedId;
-        console.log(count);
-        console.log(choice2);
-        console.log(choice1);
+            console.log(count);
+            console.log(choice2);
             count = 0;
             break;
         default:
@@ -125,28 +120,36 @@ function match() {
     }
 
 
-
+  function conditions(){
     if ((choice1 == "1") && (choice2 == "9") || (choice1 == "9") && (choice2 == "1")) {
-        console.log("Matched Instagram");
+        return "yes";
     } else if ((choice1 == "2") && (choice2 == "10") || (choice1 == "10") && (choice2 == "2")) {
-        console.log("Matched WhatsApp");
+        return "yes";
     } else if ((choice1 == "3") && (choice2 == "11") || (choice1 == "11") && (choice2 == "3")) {
-        console.log("Matched snapchat");
+        return "yes";
     } else if ((choice1 == "4") && (choice2 == "12") || (choice1 == "12") && (choice2 == "4")) {
-        console.log("Matched facebook");
+        return "yes";
     } else if ((choice1 == "5") && (choice2 == "13") || (choice1 == "13") && (choice2 == "5")) {
-        console.log("Matched twitter");
+        return "yes";
     } else if ((choice1 == "6") && (choice2 == "14") || (choice1 == "14") && (choice2 == "6")) {
-        console.log("Matched wechat");
+        return "yes";
     } else if ((choice1 == "7") && (choice2 == "15") || (choice1 == "15") && (choice2 == "7")) {
-        console.log("Matched gplus");
+          return "yes";
+
     } else if ((choice1 == "8") && (choice2 == "16") || (choice1 == "16") && (choice2 == "8")) {
-        console.log("Matched telegram");
+        return "yes";
     } else {
-            selectedCard.disabled = "true";
-        ico.classList.remove("open");
+        return "no";
+
+    }
+}
+
+    if((count == 0) && (conditions() == "yes")){
+        console.log("good");
+    }else {
+        console.log("choose another");
     }
 
 
-
 }
+
