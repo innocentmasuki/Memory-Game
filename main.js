@@ -144,7 +144,7 @@ function match() {
         console.log("Matched telegram");
     } else {
             selectedCard.disabled = "true";
-        ico.classList.remove("false");
+        ico.classList.remove("open");
     }
 
 
