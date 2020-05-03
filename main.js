@@ -83,7 +83,7 @@ function hideIcons(){
 
 function newGame() {
     startGame();
-    window.setTimeout(hideIcons, 3000);
+    window.setTimeout(hideIcons, 5000);
 
 }
 
@@ -93,7 +93,7 @@ function newGame() {
 function show(id) {
      var selectedCard = document.getElementById(id);
     var ico = selectedCard.children[0];
-    ico.classList.add("open");
+    ico.style.display = "block";
     selectedId = id;
     count++;
     selectedCard.disabled = "true";
