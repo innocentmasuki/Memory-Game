@@ -1,5 +1,3 @@
-
-
 body {
     background-color: #1b262c;
     color: white;
@@ -15,84 +13,87 @@ body {
     margin-top: 30px;
     height: 500px;
     display: grid;
+
     padding: 50px;
     grid-template-columns: auto auto auto auto;
     grid-column-gap: 5px;
     border-radius: 20px;
     background-color: #1b262c;
     box-shadow: 0 -5px 5px rgba(255, 255, 255, 0.2),
-                0 5px 5px rgba(0, 0, 0, 0.3);
-/*                inset 0 -5px 5px rgba(255, 255, 255, 0.2),*/
-/*                inset 0 5px 5px rgba(0, 0, 0, 0.3);*/
+        0 5px 5px rgba(0, 0, 0, 0.3);
+    /*                inset 0 -5px 5px rgba(255, 255, 255, 0.2),*/
+    /*                inset 0 5px 5px rgba(0, 0, 0, 0.3);*/
 
 }
 
 
 
 .game-card {
-    height: 80px;
+    height: 75px;
     width: 100px;
     box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.3),
-                0 2px 2px rgba(0, 0, 0, 0.3);
+        0 2px 2px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    padding-top: 20px;
+    background-color: #1b262c;
+    border: none;
     text-align: center;
-    font-size: 4vw;
+    font-size: 2vw;
 }
 
 
 
 
-.game-card:hover{
+.game-card:hover {
     box-shadow: 0 -4px 4px rgba(255, 255, 255, 0.2),
-                0 4px 4px rgba(0, 0, 0, 0.6);
+        0 4px 4px rgba(0, 0, 0, 0.6);
 }
 
-.fa-twitter{
+.fa-twitter {
     color: #00acee;
     text-shadow: 0px 0px 20px #00acee;
 }
 
 
-.fa-instagram{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-instagram {
+    color: #dd2a7b;
+    text-shadow: 0px 0px 20px #dd2a7b;
 }
 
 
-.fa-whatsapp{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-whatsapp {
+    color: #4FCE5D;
+    text-shadow: 0px 0px 20px #4FCE5D;
 }
 
 
-.fa-snapchat-ghost{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-snapchat-ghost {
+    color: #fffc00;
+    text-shadow: 0px 0px 20px #fffc00;
 }
 
 
-.fa-facebook-official{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-facebook-official {
+    color: #3b5998;
+    text-shadow: 0px 0px 20px #3b5998;
 }
 
 
-.fa-wechat{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-wechat {
+    color: #7bb32e;
+    text-shadow: 0px 0px 20px #7bb32e;
 }
 
 
-.fa-google-plus{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-google-plus {
+    color: #db4a39;
+    text-shadow: 0px 0px 20px #db4a39;
 }
 
 
-.fa-telegram{
-    color: #00acee;
-    text-shadow: 0px 0px 20px #00acee;
+.fa-telegram {
+    color: #0088cc;
+    text-shadow: 0px 0px 20px #0088cc;
 }
-
-
+.fa{
+    display: none;
+}

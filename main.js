@@ -1,7 +1,7 @@
-var status = 0;
-var gameCard = document.getElementsByClassName("game-card");
 var cardsContainer = document.getElementById("game-container");
 var newGame_btn = document.getElementById('new-game-btn');
+var icons = document.getElementsByClassName("fa");
+
 
 function addCards(container, cards){
     cards.forEach(function (child){
@@ -10,7 +10,7 @@ function addCards(container, cards){
 }
 
 function generateCards(idValue, iconClass){
-    card = document.createElement('div');
+    card = document.createElement('button');
     card.setAttribute('class', 'game-card');
     card.setAttribute('id', idValue);
     card.setAttribute('onmouseup', 'show(this.id)');
@@ -18,34 +18,38 @@ function generateCards(idValue, iconClass){
     return card;
 }
 
-function generateIcon(iconClass){
-    cardIcon = document.createElement('i');
-    cardIcon.setAttribute('class', iconClass);
-    cardIcon.setAttribute('id', "icons");
-    return cardIcon;
-}
 
 
 
 
+var icontype = {
+    instagram: "fa fa-instagram",
+    whatsapp: "fa fa-whatsapp",
+    snapchat: "fa fa-snapchat-ghost",
+    facebook: "fa fa-facebook-official",
+    twitter: "fa fa-twitter",
+    wechat: "fa fa-wechat",
+    googlePlus: "fa fa-google-plus",
+    telegram: "fa fa-telegram"
+};
 
 var cardsView = [
-    generateCards(1, "fa fa-instagram"),
-    generateCards(2, "fa fa-whatsapp"),
-    generateCards(3, "fa fa-snapchat-ghost"),
-    generateCards(4, "fa fa-facebook-official"),
-    generateCards(5, "fa fa-twitter"),
-    generateCards(6, "fa fa-wechat"),
-    generateCards(7, "fa fa-google-plus"),
-    generateCards(8, "fa fa-telegram"),
-    generateCards(9, "fa fa-instagram"),
-    generateCards(10, "fa fa-whatsapp"),
-    generateCards(11, "fa fa-snapchat-ghost"),
-    generateCards(12, "fa fa-facebook-official"),
-    generateCards(13, "fa fa-twitter"),
-    generateCards(14, "fa fa-wechat"),
-    generateCards(15, "fa fa-google-plus"),
-    generateCards(16, "fa fa-telegram")
+    generateCards(1, icontype.instagram),
+    generateCards(2, icontype.whatsapp),
+    generateCards(3, icontype.snapchat),
+    generateCards(4, icontype.facebook),
+    generateCards(5, icontype.twitter),
+    generateCards(6, icontype.wechat),
+    generateCards(7, icontype.googlePlus),
+    generateCards(8, icontype.telegram),
+    generateCards(9, icontype.instagram),
+    generateCards(10, icontype.whatsapp),
+    generateCards(11, icontype.snapchat),
+    generateCards(12, icontype.facebook),
+    generateCards(13, icontype.twitter),
+    generateCards(14, icontype.wechat),
+    generateCards(15, icontype.googlePlus),
+    generateCards(16, icontype.telegram)
 ];
 
 
@@ -72,29 +76,34 @@ function randomArrayShuffle(card) {
 
 
 
-function myFunction(){
+function startGame(){
     var new_game_cards = randomArrayShuffle(cardsView);
     addCards(cardsContainer, new_game_cards);
 
 }
 
-function newGame(){
-    myFunction();
-}
 
+
+function newGame(){
+    startGame();
+}
 
 
 
 function show(id){
     var selectedCard = document.getElementById(id);
-    var contents = selectedCard.textContent;
-    console.log(contents);
-//    if (contents.style.visibility === "hidden") {
-//    contents.style.visibility = "visible";
-//    } else {
-//    contents.style.display = "hidden";
-//    }
+    ico = selectedCard.children[0];
+    if(ico.style.display === "block"){
+            ico.style.display = "none";
+    }
+    else{
+            ico.style.display = "block";
+    }
+        selectedCard.disabled = "true";
+
+    return id;
 }
+
 
 
 
