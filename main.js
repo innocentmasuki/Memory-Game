@@ -18,7 +18,6 @@ function generateCards(idValue, iconClass) {
     let card = document.createElement('button');
     card.setAttribute('class', 'game-card');
     card.setAttribute('id', idValue);
-    card.setAttribute('onmouseup', 'show(this.id)');
     card.innerHTML = "<i class=\"" + iconClass + "\"></i>";
     return card;
 }
@@ -108,9 +107,6 @@ function newGame() {
 }
 
 
-function idPusher(id) {
-    history.push(id);
-}
 
 function conditions(){
     if ((history[0] === "1") && (history[1] === "9") || (history[0] === "9") && (history[1] === "1")) {
@@ -185,7 +181,7 @@ cardsContainer.addEventListener('click', function () {
     ico.style.display = "block";
     selectedId = this.id;
     selectedCard.disabled = "true";
-    idPusher(selectedId);
+    history.push(selectedId);
     count++;
     moves.textContent = "Moves: " + (count/2);
     match();

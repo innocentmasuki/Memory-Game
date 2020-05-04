@@ -11,9 +11,8 @@ body {
     max-width: 400px;
     overflow: hidden;
     margin-top: 30px;
-    height: 500px;
+    height: 400px;
     display: grid;
-
     padding: 50px;
     grid-template-columns: auto auto auto auto;
     grid-column-gap: 5px;
@@ -29,7 +28,7 @@ body {
 
 
 .game-card {
-    height: 75px;
+    height: 85px;
     width: 100px;
     box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.3),
         0 2px 2px rgba(0, 0, 0, 0.3);
