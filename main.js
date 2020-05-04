@@ -1,7 +1,10 @@
 let cardsContainer = document.getElementById("game-container");
+// let gameCard = document.getElementsByClassName("game-card");
+const clickSound = document.getElementById("click");
+const badClickSound = document.getElementById("click_bad");
 // let newGame_btn = document.getElementById('new-game-btn');
 let icons = document.getElementsByClassName("fa");
-let selectedId, history = [];
+let selectedId, history = [], count = 0;
 
 
 function addCards(container, cards) {
@@ -72,9 +75,15 @@ function startGame() {
 
 
 function hideIcons(){
+
     for(let i = 0; i < icons.length; i++){
         icons[i].style.display = "none";
     }
+
+    // for(let j = 0; j < gameCard.length; j++){
+    //     gameCard[j].style.cursor = "pointer";
+    // }
+    // cardsContainer.style.cursor = "none";
 }
 
 function viewIcons(){
@@ -85,6 +94,12 @@ function viewIcons(){
 
 
 function newGame() {
+    // cardsContainer.style.cursor = "none";
+    // for(let j = 0; j < gameCard.length; j++){
+    //     gameCard[j].style.cursor = "none";
+    // }
+
+
     startGame();
     viewIcons();
     window.setTimeout(hideIcons, 5000);
@@ -94,7 +109,6 @@ function newGame() {
 
 function idPusher(id) {
     history.push(id);
-    console.log(history);
 }
 
 function conditions(){
@@ -122,15 +136,22 @@ function conditions(){
 }
 
 function match() {
-
+let choice1 = document.getElementById(history[0]);
+let choice2 = document.getElementById(history[1]);
+let icon1 = choice1.children[0];
+let icon2 = choice2.children[0];
     if((history.length === 2) && (conditions() === "yes")){
-        console.log("good");
+        choice1.disabled = "true";
+        choice2.disabled = "true";
     }else if ((history.length === 2) && (conditions() === "no")) {
-
+        choice1.removeAttribute('disabled');
+        choice2.removeAttribute('disabled');
+        icon1.style.display = "none";
+        icon2.style.display = "none";
     }
 
-    if (history.length === 3){
-        history,length = 0;
+    if (history.length === 2){
+        history.length = 0;
     }
 
 
@@ -139,12 +160,15 @@ function match() {
 
 
 function show(id) {
+    badClickSound.loop = false;
+    badClickSound.play();
     let selectedCard = document.getElementById(id);
     let ico = selectedCard.children[0];
     ico.style.display = "block";
     selectedId = id;
     selectedCard.disabled = "true";
     idPusher(selectedId);
+    count++;
     match();
 
 }

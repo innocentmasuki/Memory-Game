@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -9,11 +9,16 @@
 
 </head>
 
-<body onload="verify()">
-    <div class="game-container" id="game-container">
+<body>
+<audio volume = "60" preload="auto" src="sounds/click.wav" id="click"></audio>
+<audio volume = "60" preload="auto" src="sounds/deny.wav" id="click_bad"></audio>
+
+<div class="game-container" id="game-container">
 
     </div>
     <button onclick="newGame()">New Game</button>
+    <button onclick="location.reload()">reset</button>
 
     <script src="main.js"></script>
-</body></html>
+</body>
+</html>
