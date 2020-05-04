@@ -1,10 +1,11 @@
 let cardsContainer = document.getElementById("game-container");
-// let gameCard = document.getElementsByClassName("game-card");
-const clickSound = document.getElementById("click");
-const badClickSound = document.getElementById("click_bad");
+let gameCard = document.getElementsByClassName("game-card");
+// const clickSound = document.getElementById("click");
+// const badClickSound = document.getElementById("click_bad");
 // let newGame_btn = document.getElementById('new-game-btn');
 let icons = document.getElementsByClassName("fa");
 let selectedId, history = [], count = 0;
+let moves = document.getElementById("moves");
 
 
 function addCards(container, cards) {
@@ -94,12 +95,12 @@ function viewIcons(){
 
 
 function newGame() {
-    // cardsContainer.style.cursor = "none";
-    // for(let j = 0; j < gameCard.length; j++){
-    //     gameCard[j].style.cursor = "none";
-    // }
+    for(let j = 0; j < gameCard.length; j++){
+        gameCard[j].removeAttribute("disabled");
+    }
 
-
+    count = 0;
+    history.length = 0;
     startGame();
     viewIcons();
     window.setTimeout(hideIcons, 5000);
@@ -148,6 +149,10 @@ let icon2 = choice2.children[0];
         choice2.removeAttribute('disabled');
         icon1.style.display = "none";
         icon2.style.display = "none";
+        // badClickSound.loop = false;
+        // badClickSound.play();
+        // clickSound.stop();
+
     }
 
     if (history.length === 2){
@@ -159,27 +164,30 @@ let icon2 = choice2.children[0];
 
 
 
-function show(id) {
-    badClickSound.loop = false;
-    badClickSound.play();
-    let selectedCard = document.getElementById(id);
+// function show(id) {
+//     // clickSound.loop = false;
+//     // clickSound.play();
+//     let selectedCard = document.getElementById(id);
+//     let ico = selectedCard.children[0];
+//     ico.style.display = "block";
+//     selectedId = id;
+//     selectedCard.disabled = "true";
+//     idPusher(selectedId);
+//     count++;
+//     moves.textContent = "Moves: " + (count/2);
+//     match();
+//
+// }
+
+cardsContainer.addEventListener('click', function () {
+    let selectedCard = document.getElementById(this.id);
     let ico = selectedCard.children[0];
     ico.style.display = "block";
-    selectedId = id;
+    selectedId = this.id;
     selectedCard.disabled = "true";
     idPusher(selectedId);
     count++;
+    moves.textContent = "Moves: " + (count/2);
     match();
-
-}
-
-// cardsContainer.addEventListener('click', function () {
-//     let selectedCard = document.getElementById(this.id);
-//     let ico = selectedCard.children[0];
-//     ico.style.display = "block";
-//     selectedId = this.id;
-//     count++;
-//     selectedCard.disabled = "true";
-//     match();
-// });
+});
 

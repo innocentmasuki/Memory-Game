@@ -51,6 +51,11 @@ body {
                 inset 0 -4px 4px rgba(255, 255, 255, 0.2);
 
 }
+span{
+    display: block;
+    width: 300px;
+    float: left;
+}
 
 .fa-twitter {
     color: #00acee;
