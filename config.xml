@@ -7,10 +7,10 @@
 
 <!-- versionCode is optional and Android only -->
 
-  <name>dlllllb</name>
+  <name>Memory Game</name>
 
   <description>
-      Describing the power of light
+      Memory Game
   </description>
 
   <author href="https://build.phonegap.com" email="support@phonegap.com">
