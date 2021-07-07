@@ -1,37 +1,72 @@
 let cardsContainer = document.getElementById("game-container");
 let gameCard = document.getElementsByClassName("game-card");
-// const clickSound = document.getElementById("click");
-// const badClickSound = document.getElementById("click_bad");
+const clickSound = document.getElementById("click");
+const badClickSound = document.getElementById("click_bad");
+const winGame = document.getElementById("win_game");
+const starSound = document.getElementById("star_game");
+const backgroundSound = document.getElementById("background_music");
 // let newGame_btn = document.getElementById('new-game-btn');
-let icons = document.getElementsByClassName("fa");
-let selectedId, history = [], count = 0;
-let moves = document.getElementById("moves");
+let icons = document.getElementsByClassName("g");
+let selectedId, history = [],
+    count = 0,
+    win = 0,
+    starCount = 0;
+const stars = [],
+    threeStars = [];
+let movesCounter = document.getElementById("moves");
+let starsContainer = document.getElementById("starsContainer");
 
 
-function addCards(container, cards) {
-    cards.forEach(function (child) {
+function load() {
+    backgroundSound.loop = true;
+    backgroundSound.play();
+    starSound.volume = 10;
+}
+
+function addItems(container, cards) {
+    cards.forEach(function(child) {
         container.appendChild(child);
     });
 }
+
+
+function removeItems(container, inner) {
+    inner.forEach(function(child) {
+        container.removeChild(child);
+    });
+}
+
 
 function generateCards(idValue, iconClass) {
     let card = document.createElement('button');
     card.setAttribute('class', 'game-card');
     card.setAttribute('id', idValue);
+    card.setAttribute('onmouseup', 'show(this.id)');
     card.innerHTML = "<i class=\"" + iconClass + "\"></i>";
     return card;
 }
 
- const iconType = {
-    instagram: "fa fa-instagram",
-    whatsApp: "fa fa-whatsapp",
-    snapchat: "fa fa-snapchat-ghost",
-    facebook: "fa fa-facebook-official",
-    twitter: "fa fa-twitter",
-    weChat: "fa fa-wechat",
-    googlePlus: "fa fa-google-plus",
-    telegram: "fa fa-telegram"
+function generateStars(starClass) {
+    let stars = document.createElement('i');
+    stars.innerHTML = "<i class=\"" + starClass + "\"></i>";
+    return stars;
+}
+
+
+
+const iconType = {
+    instagram: "fa fa-instagram g",
+    whatsApp: "fa fa-whatsapp g",
+    snapchat: "fa fa-snapchat-ghost g",
+    facebook: "fa fa-facebook-official g",
+    twitter: "fa fa-twitter g",
+    weChat: "fa fa-wechat g",
+    googlePlus: "fa fa-google-plus g",
+    telegram: "fa fa-telegram g",
+    starFull: "fa fa-star",
+    starEmpty: "fa fa-star-o"
 };
+
 
 const cardsView = [
     generateCards(1, iconType.instagram),
@@ -51,6 +86,47 @@ const cardsView = [
     generateCards(15, iconType.googlePlus),
     generateCards(16, iconType.telegram)
 ];
+for (let i = 0; i < 3; i++) {
+    stars.push(generateStars(iconType.starEmpty));
+}
+
+for (let i = 0; i < 3; i++) {
+    threeStars.push(generateStars(iconType.starFull));
+}
+
+const twoStars = [
+    generateStars(iconType.starFull),
+    generateStars(iconType.starFull),
+    generateStars(iconType.starEmpty)
+];
+
+const oneStar = [
+    generateStars(iconType.starFull),
+    generateStars(iconType.starEmpty),
+    generateStars(iconType.starEmpty)
+];
+
+function singleStar() {
+
+    starSound.play();
+    removeItems(starsContainer, stars);
+    addItems(starsContainer, oneStar);
+}
+
+
+function doubleStars() {
+    starSound.play();
+    removeItems(starsContainer, oneStar);
+    addItems(starsContainer, twoStars);
+}
+
+
+function trippeStars() {
+    starSound.play();
+    removeItems(starsContainer, twoStars);
+    addItems(starsContainer, threeStars);
+
+}
 
 
 function randomArrayShuffle(card) {
@@ -69,46 +145,66 @@ function randomArrayShuffle(card) {
 
 function startGame() {
     let new_game_cards = randomArrayShuffle(cardsView);
-    addCards(cardsContainer, new_game_cards);
-
-}
-
-
-function hideIcons(){
-
-    for(let i = 0; i < icons.length; i++){
-        icons[i].style.display = "none";
+    addItems(cardsContainer, new_game_cards);
+    switch (starCount) {
+        case 1:
+            removeItems(starsContainer, oneStar);
+            addItems(starsContainer, stars);
+            break;
+        case 2:
+            removeItems(starsContainer, twoStars);
+            addItems(starsContainer, stars);
+            break;
+        case 3:
+            removeItems(starsContainer, threeStars);
+            addItems(starsContainer, stars);
+            break;
+        default:
+            addItems(starsContainer, stars);
+            break;
     }
 
-    // for(let j = 0; j < gameCard.length; j++){
-    //     gameCard[j].style.cursor = "pointer";
-    // }
-    // cardsContainer.style.cursor = "none";
 }
 
-function viewIcons(){
-    for(let i = 0; i < icons.length; i++){
+
+function start() {
+    for (let i = 0; i < icons.length; i++) {
+        icons[i].style.display = "none";
+    }
+    movesCounter.textContent = "Start";
+
+}
+
+function viewIcons() {
+    for (let i = 0; i < icons.length; i++) {
         icons[i].style.display = "block";
     }
 }
 
 
 function newGame() {
-    for(let j = 0; j < gameCard.length; j++){
+
+    for (let j = 0; j < gameCard.length; j++) {
         gameCard[j].removeAttribute("disabled");
     }
-
-    count = 0;
     history.length = 0;
+    count = 0;
+    win = 0;
+    movesCounter.textContent = "Memorize";
+
     startGame();
     viewIcons();
-    window.setTimeout(hideIcons, 5000);
+    window.setTimeout(start, 7000);
+
 
 }
 
 
+function idPusher(id) {
+    history.push(id);
+}
 
-function conditions(){
+function conditions() {
     if ((history[0] === "1") && (history[1] === "9") || (history[0] === "9") && (history[1] === "1")) {
         return "yes";
     } else if ((history[0] === "2") && (history[1] === "10") || (history[0] === "10") && (history[1] === "2")) {
@@ -133,57 +229,62 @@ function conditions(){
 }
 
 function match() {
-let choice1 = document.getElementById(history[0]);
-let choice2 = document.getElementById(history[1]);
-let icon1 = choice1.children[0];
-let icon2 = choice2.children[0];
-    if((history.length === 2) && (conditions() === "yes")){
+    let choice1 = document.getElementById(history[0]);
+    let choice2 = document.getElementById(history[1]);
+    let icon1 = choice1.children[0];
+    let icon2 = choice2.children[0];
+    if ((history.length === 2) && (conditions() === "yes")) {
         choice1.disabled = "true";
         choice2.disabled = "true";
-    }else if ((history.length === 2) && (conditions() === "no")) {
+        win++;
+    } else if ((history.length === 2) && (conditions() === "no")) {
         choice1.removeAttribute('disabled');
         choice2.removeAttribute('disabled');
         icon1.style.display = "none";
         icon2.style.display = "none";
-        // badClickSound.loop = false;
-        // badClickSound.play();
-        // clickSound.stop();
-
+        clickSound.pause();
+        badClickSound.play();
     }
 
-    if (history.length === 2){
+    if (history.length === 2) {
         history.length = 0;
     }
 
 
 }
 
-
-
-// function show(id) {
-//     // clickSound.loop = false;
-//     // clickSound.play();
-//     let selectedCard = document.getElementById(id);
-//     let ico = selectedCard.children[0];
-//     ico.style.display = "block";
-//     selectedId = id;
-//     selectedCard.disabled = "true";
-//     idPusher(selectedId);
-//     count++;
-//     moves.textContent = "Moves: " + (count/2);
-//     match();
-//
-// }
-
-cardsContainer.addEventListener('click', function () {
-    let selectedCard = document.getElementById(this.id);
+function show(id) {
+    clickSound.play();
+    let selectedCard = document.getElementById(id);
     let ico = selectedCard.children[0];
     ico.style.display = "block";
-    selectedId = this.id;
+    selectedId = id;
     selectedCard.disabled = "true";
-    history.push(selectedId);
+    idPusher(selectedId);
     count++;
-    moves.textContent = "Moves: " + (count/2);
-    match();
-});
+    movesCounter.textContent = count;
 
+    match();
+    if (win === 8) {
+
+        winGame.loop = false;
+        winGame.play();
+        if (count < 18) {
+            window.setTimeout(singleStar, 2000);
+            window.setTimeout(doubleStars, 3000);
+            window.setTimeout(trippeStars, 4000);
+            starCount = 3;
+        } else if (count > 18 && count < 25) {
+            window.setTimeout(singleStar, 2000);
+            window.setTimeout(doubleStars, 3000);
+            starCount = 2;
+        } else {
+            window.setTimeout(singleStar, 2000);
+            starCount = 1;
+        }
+
+        movesCounter.textContent = "You Won!!";
+
+    }
+
+}

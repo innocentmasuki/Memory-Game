@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -9,16 +10,27 @@
 
 </head>
 
-<body>
-<audio volume = "60" preload="auto" src="sounds/click.wav" id="click"></audio>
-<audio volume = "60" preload="auto" src="sounds/deny.wav" id="click_bad"></audio>
-<span id="moves"></span>
-<div class="game-container" id="game-container">
+<body onload="load()">
+    <audio preload="auto" src="sounds/click.ogg" id="click"></audio>
+    <audio preload="auto" src="sounds/background.ogg" id="background_music"></audio>
+    <audio preload="auto" src="sounds/deny.ogg" id="click_bad"></audio>
+    <audio preload="auto" src="sounds/win_game.ogg" id="win_game"></audio>
+    <audio preload="auto" src="sounds/star.ogg" id="star_game"></audio>
+    <div class="Container">
 
+        <div class="dashboard">
+            <button class="button" id="new_game_btn" onclick="newGame()">New Game</button>
+            <div class="gameMoves"><span id="moves"></span>
+            </div>
+            <div class="stars" id="starsContainer"></div>
+        </div>
+
+        <div class="game-container" id="game-container">
+
+        </div>
+
+        <script src="main.js"></script>
     </div>
-    <button onclick="newGame()">New Game</button>
-    <button onclick="location.reload()">reset</button>
-
-    <script src="main.js"></script>
 </body>
+
 </html>
